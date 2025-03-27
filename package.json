@@ -1,0 +1,20 @@
+{
+  "name": "rezo-social-full-stack",
+  "version": "1.0.0",
+  "description": "Javascript full-stack | Créer un réseau social (twitter/Instagram like) Stack : MongoDB, Express, React, Nodejs. Featuring JWT, Mongoose, Multer, Bcrypt, Redux, Sass…",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon server"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "body-parser": "^1.20.3",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "mongoose": "^8.12.1",
+    "validator": "^13.12.0"
+  }
+}

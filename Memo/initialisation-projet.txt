@@ -1,0 +1,14 @@
+npm init -y  :
+-y : repond yes a toutes les questions
+installation des bibliothesque
+$ npm i --save express dotenv
+dotenv :fichier qui contenir variable enviroenment 
+
+mongodb+srv://anwar:<db_password>@app-js-full-stack.h6dlp.
+mongodb.net/?retryWrites=true&w=majority&appName=app-js-full-stack
+
+mongodb+srv://anwar:1234@cluster0.p113d.mongodb.net/rezo-social-full-stack
+
+mongodb+srv://anwar:<db_password>@cluster0.p113d.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
+
+mongodb+srv://anwar:<db_password>@cluster0.p113d.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
