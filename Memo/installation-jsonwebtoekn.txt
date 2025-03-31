@@ -1,0 +1,2 @@
+installation du jsonwebtoken pour authentification :
+npm i -s jsonwebtoken
