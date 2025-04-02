@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
-const { isEmail } = require("validator");
-const bcrypt = require("bcrypt");
+const PostModel = require("../models/post.model");
+const UserModel = require("../models/user.model");
+
 const { isEmail } = require("validator");
 const bcrypt = require("bcrypt");   
 const { text } = require("body-parser");

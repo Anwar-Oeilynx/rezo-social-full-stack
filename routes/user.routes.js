@@ -1,7 +1,10 @@
 const router = require('express').Router();
 const authController = require('../controllers/auth.controller');
 const userController = require('../controllers/user.controller');   
-
+const uploadController = require('../controllers/upload.controller');
+const multer = require('multer');
+const upload = multer(); 
+// dossier de destination pour les images
 // auth se connecter c  signIn et s'inscrire c signUp
 router.post('/register', authController.signUp);
 router.post('/login', authController.signIn);
@@ -15,6 +18,7 @@ router.delete('/:id', userController.deleteUser);
 router.patch('/follow/:id', userController.follow);
 router.patch('/unfollow/:id', userController.unfollow);     
 
-
+// upload image
+router.post('/upload',upload.single('file'), uploadController.uploadProfil); // upload image
 
 module.exports = router;
