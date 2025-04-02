@@ -1,0 +1,2 @@
+installation de cors pour pouvoir exporter notre backend et le rendre accessible
+npm i -s cors

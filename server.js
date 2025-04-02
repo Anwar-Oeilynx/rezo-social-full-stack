@@ -11,8 +11,24 @@ const port = process.env.PORT;
 // appel checkUser
 const { checkUser,requireAuth } = require('./middleware/auth.middleware');
 
+//appel de cors
+const cors = require('cors');
+const corsOptions = {
+    origin:process.env.CLIENT_URL, // Remplacez par l'URL de votre client
+    credentials: true, // Autoriser les cookies et les en-têtes d'autorisation
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'], // Méthodes autorisées
+    allowedHeaders: ['Content-Type', 'Authorization'], // En-têtes autorisés
+    exposedHeaders: ['Content-Disposition'], // En-têtes exposés
+    preflightContinue: false, // Ne pas continuer la requête après la pré-vérification
+    maxAge: 3600, // Durée de mise en cache de la pré-vérification (en secondes)
+     optionsSuccessStatus: 200 // For legacy browser support
+
+};
+
 const app = express();  
  
+app.use(cors(corsOptions)); // utiliser cors pour les requetes cross-origin
+app.use(express.json());//
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));

@@ -11,9 +11,19 @@ module.exports.readPost = async (req, res) => {
     res.status(200).json(posts);
 }   
 module.exports.createPost = async (req, res) => {
+
+    // let fileName;
+    if (req.file !== null) {
+        fileName = '';
+    } else {    
+        fileName = req.body.posterId + Date.now() + '.jpg';
+        const base64Data = req.file.replace(/^data:image\/jpeg;base64,/, '');
+        const buffer = Buffer.from(base64Data, 'base64');
+    }
     const newPost = new PostModel({
         posterId: req.body.userId,
         message: req.body.message,
+        picture: req.file ? `./uploads/posts/${fileName}` : '',
         video: req.body.video,
         likers: [],
         comments: [],
@@ -25,6 +35,8 @@ module.exports.createPost = async (req, res) => {
         return res.status(400).json({ message: err });
     }
 }
+//update post
+
 module.exports.updatePost = async (req, res) => {
     if (!ObjectID.isValid(req.params.id))
         return res.status(400).send('ID unknown : ' + req.params.id);
@@ -50,6 +62,7 @@ module.exports.updatePost = async (req, res) => {
         return res.status(500).json({ message: err });
     }
 }
+// delete post
 module.exports.deletePost = async (req, res) => {   
     if (!ObjectID.isValid(req.params.id))
         return res.status(400).send('ID unknown : ' + req.params.id);
@@ -61,7 +74,7 @@ module.exports.deletePost = async (req, res) => {
         return res.status(500).json({ message: err });
     }
 }
-
+// like post
 module.exports.likePost = async (req, res) => {   
     if (!ObjectID.isValid(req.params.id) || !ObjectID.isValid(req.body.idToLike))
         return res.status(400).send('ID unknown : ' + req.params.id);
@@ -88,6 +101,7 @@ module.exports.likePost = async (req, res) => {
         return res.status(500).json({ message: err });
     }
 }
+// unlike post
 module.exports.unlikePost = async (req, res) => {   
     if (!ObjectID.isValid(req.params.id) || !ObjectID.isValid(req.body.idToUnLike))
         return res.status(400).send('ID unknown : ' + req.params.id);
@@ -114,7 +128,7 @@ module.exports.unlikePost = async (req, res) => {
         return res.status(500).json({ message: err });
     }
 }   
-
+// comment post
 module.exports.commentPost = async (req, res) => {   
     if (!ObjectID.isValid(req.params.id) || !ObjectID.isValid(req.body.idToComment))
         return res.status(400).send('ID unknown : ' + req.params.id);
@@ -143,6 +157,7 @@ module.exports.commentPost = async (req, res) => {
     }
 }
 
+// edit comment post
 module.exports.editCommentPost = async (req, res) => {   
     if (!ObjectID.isValid(req.params.id) || !ObjectID.isValid(req.body.idToEdit))
         return res.status(400).send('ID unknown : ' + req.params.id);
@@ -165,6 +180,8 @@ module.exports.editCommentPost = async (req, res) => {
         return res.status(500).json({ message: err });
     }
 }   
+
+// delete comment post
 module.exports.deleteCommentPost = async (req, res) => {   
     if (!ObjectID.isValid(req.params.id) || !ObjectID.isValid(req.body.idToDelete))
         return res.status(400).send('ID unknown : ' + req.params.id);

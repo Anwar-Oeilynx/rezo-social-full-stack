@@ -1,8 +1,12 @@
-const   router = require('express').Router();
- const postController = require('../controllers/post.controller');
+const router = require('express').Router();
+const postController = require('../controllers/post.controller');
+const multer = require('multer');
+const upload = multer({ dest: 'uploads/' });
 
+
+// dossier de destination pour les images
 router.get('/', postController.readPost); // get all posts
-router.post('/', postController.createPost); // create a post
+router.post('/',upload.single('file'), postController.createPost); // create a post
 router.put('/:id', postController.updatePost); // update a post
 router.delete('/:id', postController.deletePost); // delete a post
 router.patch('/like-post/:id', postController.likePost); // like a post

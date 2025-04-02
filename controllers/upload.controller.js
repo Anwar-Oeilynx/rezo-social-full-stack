@@ -11,6 +11,7 @@ module.exports.uploadProfil = async (req, res) => {
             const fileName = req.body.name + ".jpg";
             const filePath = `${__dirname}/../client/public/uploads/profil/${fileName}`;
             await pipeline(req.file.stream, fs.createWriteStream(filePath));// creation of the file
+            // Update the user profile picture in the database
             await UserModel.findByIdAndUpdate(
                 req.body.userId,
                 { $set: { picture: `./uploads/profil/${fileName}` } },
